@@ -47,7 +47,7 @@ export const SongCard = ({ song }) => {
       <div className="flex w-full justify-between">
         <div>
           <p>{name}</p>
-          <p>{artist}</p>
+          <p className="text-sm text-gray-500">{artist}</p>
         </div>
 
         <p className="flex items-center justify-center">

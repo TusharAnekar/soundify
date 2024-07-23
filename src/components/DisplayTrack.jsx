@@ -13,7 +13,7 @@ export const DisplayTrack = ({ audioRef }) => {
     <div className="flex flex-col gap-4">
       <div>
         <h2 className="text-2xl font-bold">{name}</h2>
-        <p className="text-gray-400">{artist}</p>
+        <p className="text-sm text-gray-500">{artist}</p>
       </div>
       <img
         src={coverImage}
