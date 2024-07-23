@@ -37,7 +37,7 @@ export const SongCard = ({ song }) => {
   }
 
   return (
-    <div className="flex gap-4" onClick={handlePlaySong}>
+    <div className="flex cursor-pointer gap-4" onClick={handlePlaySong}>
       <img
         src={coverImage}
         alt={`${name} album cover`}

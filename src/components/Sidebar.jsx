@@ -6,13 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getCover } from "../services/songService";
 
 import { songsConstants } from "../constants/songsConstants";
-const {
-  SET_ALL_COVERS,
-  SET_SONG_LIST_TYPE,
-  SET_SEARCH_INPUT,
-  SET_IS_LOADING,
-  SET_CURRENT_TRACK,
-} = songsConstants;
+const { SET_ALL_COVERS, SET_SONG_LIST_TYPE, SET_SEARCH_INPUT, SET_IS_LOADING } =
+  songsConstants;
 
 export const Sidebar = () => {
   const {
@@ -21,25 +16,24 @@ export const Sidebar = () => {
     searchedSongsList,
   } = useSongContext();
 
-  async function getAllCovers() {
-    try {
-      setSongs({ type: SET_IS_LOADING, payload: true });
-      const allCovers = await Promise.all(
-        allSongs?.map(async ({ cover }) => {
-          const responseCovers = await getCover(cover);
-          return responseCovers.url;
-        }),
-      );
-      setSongs({ type: SET_ALL_COVERS, payload: allCovers });
-      setSongs({ type: SET_IS_LOADING, payload: false });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
+    async function getAllCovers() {
+      try {
+        setSongs({ type: SET_IS_LOADING, payload: true });
+        const allCovers = await Promise.all(
+          allSongs?.map(async ({ cover }) => {
+            const responseCovers = await getCover(cover);
+            return responseCovers.url;
+          }),
+        );
+        setSongs({ type: SET_ALL_COVERS, payload: allCovers });
+        setSongs({ type: SET_IS_LOADING, payload: false });
+      } catch (error) {
+        console.error(error);
+      }
+    }
     getAllCovers();
-  }, [allSongs]);
+  }, [allSongs, setSongs]);
 
   function handleSearch(e) {
     setSongs({ type: SET_SEARCH_INPUT, payload: e.target.value.toLowerCase() });

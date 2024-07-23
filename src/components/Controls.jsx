@@ -27,7 +27,7 @@ export const Controls = ({ audioRef, progressBarRef }) => {
     const currentTime = audioRef.current.currentTime;
     progressBarRef.current.value = currentTime;
     playAnimationRef.current = requestAnimationFrame(repeat);
-  }, []);
+  }, [audioRef, progressBarRef]);
 
   useEffect(() => {
     if (isPlaying) {
