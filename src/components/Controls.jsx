@@ -60,24 +60,28 @@ export const Controls = ({ audioRef, progressBarRef }) => {
   }
 
   return (
-    <div>
+    <div className="flex justify-between">
+      <button>
+        <MoreHorizIcon />
+      </button>
+
       <div>
-        <button>
-          <MoreHorizIcon />
-        </button>
-        <button>
-          <ArrowLeftIcon onClick={handlePreviousTrack} />
+        <button className="relative" onClick={handlePreviousTrack}>
+          <ArrowLeftIcon className="absolute bottom-0 right-1" />
+          <ArrowLeftIcon />
         </button>
         <button onClick={togglePlayPause}>
           {isPlaying ? <PauseCircleFilledIcon /> : <PlayCircleFilledIcon />}
         </button>
-        <button onClick={handleNextTrack}>
+        <button className="relative" onClick={handleNextTrack}>
+          <ArrowRightIcon className="absolute bottom-0 left-1" />
           <ArrowRightIcon />
         </button>
-        <button>
-          <VolumeUpIcon />
-        </button>
       </div>
+
+      <button>
+        <VolumeUpIcon />
+      </button>
     </div>
   );
 };

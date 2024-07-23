@@ -17,7 +17,7 @@ export const Player = () => {
     <div
       className={`${!isShowSidebar ? `max-sm:block` : `max-sm:hidden`} grid max-h-dvh items-center p-4`}
     >
-      <div>
+      <div className="flex flex-col gap-2">
         <DisplayTrack audioRef={audioRef} />
         <ProgressBar progressBarRef={progressBarRef} audioRef={audioRef} />
         <Controls audioRef={audioRef} progressBarRef={progressBarRef} />
