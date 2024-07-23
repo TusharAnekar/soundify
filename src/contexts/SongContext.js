@@ -10,6 +10,7 @@ const SongContext = createContext();
 
 const SongProvider = ({ children }) => {
   const [songs, setSongs] = useReducer(songsReducer, initialSongs);
+  const { allSongs, songListType, searchInput, allCovers } = songs;
 
   async function getSongs() {
     try {
@@ -28,8 +29,27 @@ const SongProvider = ({ children }) => {
   useEffect(() => {
     getSongs();
   }, []);
+
+  const getCoverImageForASong = (cover) =>
+    allCovers?.find((coverUrl) => coverUrl.includes(cover));
+
+  const selectedSongsList =
+    songListType === "for you"
+      ? allSongs
+      : allSongs?.filter(({ top_track }) => top_track);
+
+  const searchedSongsList = searchInput.length
+    ? selectedSongsList?.filter(
+        ({ name, artist }) =>
+          name.toLowerCase().includes(searchInput) ||
+          artist.toLowerCase().includes(searchInput),
+      )
+    : selectedSongsList;
+
   return (
-    <SongContext.Provider value={{ songs, setSongs }}>
+    <SongContext.Provider
+      value={{ songs, setSongs, searchedSongsList, getCoverImageForASong }}
+    >
       {children}
     </SongContext.Provider>
   );
