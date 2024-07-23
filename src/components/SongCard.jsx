@@ -50,7 +50,7 @@ export const SongCard = ({ song }) => {
           <p className="text-sm text-gray-500">{artist}</p>
         </div>
 
-        <p className="flex items-center justify-center">
+        <p className="flex items-center justify-center text-sm text-gray-500">
           {Math.floor(duration / 60)}:
           {Math.floor(duration % 60)
             .toString()
