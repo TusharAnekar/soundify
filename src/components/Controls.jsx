@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
@@ -12,6 +12,8 @@ import { useSongContext } from "../contexts/SongContext";
 const { SET_IS_PLAYING, SET_TRACK_INDEX, SET_CURRENT_TRACK } = songsConstants;
 
 export const Controls = ({ audioRef, progressBarRef }) => {
+  const [volume, setVolume] = useState(60);
+
   const {
     songs: { isPlaying, trackIndex, allSongs },
     setSongs,
@@ -30,13 +32,16 @@ export const Controls = ({ audioRef, progressBarRef }) => {
   }, [audioRef, progressBarRef]);
 
   useEffect(() => {
+    if (audioRef) {
+      audioRef.current.volume = volume / 100;
+    }
     if (isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
     playAnimationRef.current = requestAnimationFrame(repeat);
-  }, [isPlaying, audioRef, repeat]);
+  }, [isPlaying, audioRef, repeat, volume]);
 
   function handleNextTrack() {
     if (trackIndex >= allSongs.length - 1) {
@@ -79,8 +84,18 @@ export const Controls = ({ audioRef, progressBarRef }) => {
         </button>
       </div>
 
-      <button>
+      <button
+        onChange={(e) => setVolume(e.target.value)}
+        className="group relative"
+      >
         <VolumeUpIcon />
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={volume}
+          className="absolute right-0 top-6 hidden group-hover:block"
+        />
       </button>
     </div>
   );
