@@ -5,12 +5,12 @@ import { songsConstants } from "../constants/songsConstants";
 const { SET_CURRENT_TRACK, SET_IS_PLAYING } = songsConstants;
 
 export const SongCard = ({ song }) => {
-  const { name, artist, cover, url } = song;
+  const { name, artist, cover, url, id } = song;
 
   const [duration, setDuration] = useState(null);
 
   const {
-    songs: { isPlaying },
+    songs: { isPlaying, currentTrack },
     setSongs,
     getCoverImageForASong,
   } = useSongContext();
@@ -37,7 +37,10 @@ export const SongCard = ({ song }) => {
   }
 
   return (
-    <div className="flex cursor-pointer gap-4" onClick={handlePlaySong}>
+    <div
+      className={`flex cursor-pointer gap-4 rounded-lg p-2 ${currentTrack.id === id && "bg-gray-400"} `}
+      onClick={handlePlaySong}
+    >
       <img
         src={coverImage}
         alt={`${name} album cover`}

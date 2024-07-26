@@ -12,7 +12,7 @@ const { SET_ALL_COVERS, SET_SONG_LIST_TYPE, SET_SEARCH_INPUT, SET_IS_LOADING } =
 
 export const Sidebar = () => {
   const {
-    songs: { allSongs, isShowSidebar, isLoading },
+    songs: { allSongs, isShowSidebar, isLoading, songListType },
     setSongs,
     searchedSongsList,
   } = useSongContext();
@@ -53,13 +53,13 @@ export const Sidebar = () => {
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
               <button
-                className="text-lg"
+                className={`text-lg ${songListType === "for you" && "font-bold"}`}
                 onClick={() => handleSongListType("for you")}
               >
                 For You
               </button>
               <button
-                className="text-lg"
+                className={`text-lg ${songListType === "top tracks" && "font-bold"}`}
                 onClick={() => handleSongListType("top tracks")}
               >
                 Top Tracks
