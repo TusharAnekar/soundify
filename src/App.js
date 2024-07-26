@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div
-      className={`relative box-border h-dvh max-w-screen-lg bg-gradient-to-r from-black to-gray-600 p-4 text-white sm:grid sm:grid-cols-[200px_1fr_1fr] lg:mx-auto`}
+      className={`relative box-border min-h-dvh bg-gradient-to-r from-black to-gray-600 p-4 text-white sm:grid sm:grid-cols-[200px_1fr_1fr] lg:mx-auto`}
     >
       <Header />
       <Sidebar />

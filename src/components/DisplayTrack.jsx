@@ -18,7 +18,7 @@ export const DisplayTrack = ({ audioRef }) => {
       <img
         src={coverImage}
         alt={`${name} cover of album`}
-        className="aspect-square rounded-lg"
+        className="aspect-square w-5/6 rounded-lg"
       />
       <audio src={url} ref={audioRef}></audio>
     </div>

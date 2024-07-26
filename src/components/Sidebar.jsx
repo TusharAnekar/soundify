@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getCover } from "../services/songService";
 
 import { songsConstants } from "../constants/songsConstants";
+import { Loader } from "./Loader";
 const { SET_ALL_COVERS, SET_SONG_LIST_TYPE, SET_SEARCH_INPUT, SET_IS_LOADING } =
   songsConstants;
 
@@ -46,7 +47,7 @@ export const Sidebar = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <div className={`${isShowSidebar ? `max-sm:block` : `max-sm:hidden`}`}>
           <div className="flex flex-col gap-4">
