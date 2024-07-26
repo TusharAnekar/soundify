@@ -35,9 +35,8 @@ A web application to listen to music! (Frontend Assignment)
 ### FRONTEND
 
 1. React JS (useContext, useReducer)
-2. React Router v6
-3. Tailwind CSS
-4. MUI Icons
+2. Tailwind CSS
+3. MUI Icons
 
 ### BACKEND
 
